@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content%}
+    <div>
+            <div class='contactForm'>
+                <form action="/contact" method="POST" enctype="multipart/form-data">
+                    <h1>Contact us</h1>
+                    <label for="nom">Nom:</label><br>
+                    <input type="text" id="nom" name="nom"><br>
+                    <label for="mail">Email:</label><br>
+                    <input type="email" id="mail" name="mail"><br>
+                    <label for="rate">Rate:</label><br>
+                    <select name="rate" id="rate">
+                        {% for i in range(1,6) %}
+                        <option value="{{i}}">{{i}}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <label for="message">Message:</label><br>
+                    <textarea name="message" id="message" cols="80" rows="6"></textarea><br>
+                    <input type="submit" value="Send">
+                </form>
+            </div>
+            <img src="static/images/add.png" alt="" id="add">
+            {% for msg in messages %}
+            <div class='msg'>
+                <p><b>Name:</b> {{msg.nom}}</p>
+                <p><b>Email:</b> {{msg.mail}}</p>
+                <p> <b>date:</b> {{msg.mdate}}</p>
+                <div class="main">
+                    {% for i in range(msg.rate) %}
+                    <i class="fa fa-star checked"></i>
+                    {% endfor %}
+                    {% for i in range(5-msg.rate) %}
+                    <i class="fa fa-star unchecked"></i>
+                    {% endfor %}
+                    </div>
+                <p><b>Message:</b><br> {{msg.message}}</p>
+            </div>
+            {% endfor %}
+    </div>  
+    <br>
+    <br>
+    <script src="static/js/contact.js"></script>
+{% endblock content%}
