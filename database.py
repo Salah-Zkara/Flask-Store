@@ -1,5 +1,13 @@
 import subprocess as sp
+import platform
 from server import db,Product,Message
+
+if(platform.system().lower()=="windows") :
+	command="cls"
+else:
+	command="clear"
+
+
 def Show_Products():
 	Products=Product.query.all()
 	for prd in Products:
@@ -52,7 +60,7 @@ def Delete_Message(Id):
 
 
 def main():
-	sp.call('cls',shell=True)
+	sp.call(command,shell=True)
 	print("1)- Create DataBase\n2)- Products\n3)- Messages\n4)- Delete DataBase\n5)- Exit")
 	n=input()
 	while(n!='5') :
@@ -61,109 +69,109 @@ def main():
 			print("DataBase Created Successfully !")
 			for i in range(99999999):
 				pass
-			sp.call('cls',shell=True)
+			sp.call(command,shell=True)
 		elif(n=='2'):
-			sp.call('cls',shell=True)
+			sp.call(command,shell=True)
 			#view_products()
 			print("1)- View Products\n2)- Add New Product\n3)- Edit Product\n4)- Delete Product\n5)- Exit")
 			n1=input()
 			while(n1!='5') :
 				if(n1=='1') :
 					#view function
-					sp.call('cls',shell=True)
+					sp.call(command,shell=True)
 					Show_Products()
 					input("\nPress ENTRER !!")
-					sp.call('cls',shell=True)
+					sp.call(command,shell=True)
 				elif(n1=='2'):
 					#Add New Product function
 					Add_Product()
 					print("The Product Has Been Added Successfully !")
 					for i in range(99999999):
 						pass
-					sp.call('cls',shell=True)
+					sp.call(command,shell=True)
 				elif(n1=='3'):
 					#Edit Product function
 					Show_Products()
 					Id=int(input("Product ID to Edit: "))
 					if(Edit_product(Id)==False) :
-						sp.call('cls',shell=True)
+						sp.call(command,shell=True)
 						print("Product ID Not Found !")
 						for i in range(99999999):
 							pass
-						sp.call('cls',shell=True)
+						sp.call(command,shell=True)
 					else:
 						print("The Product Has Been Edited Successfully !")
 						for i in range(99999999):
 							pass
-						sp.call('cls',shell=True)
+						sp.call(command,shell=True)
 
 				elif(n1=='4'):
 					#Delete Product function
-					sp.call('cls',shell=True)
+					sp.call(command,shell=True)
 					Show_Products()
 					Id=int(input("Product ID to Delete: "))
 					if(Delete_product(Id)==True) :
 						print("The Product Has Been Deleted Successfully !")
 						for i in range(99999999):
 							pass
-						sp.call('cls',shell=True)
+						sp.call(command,shell=True)
 					else:
 						print("Product ID Not Found !")
 						for i in range(99999999):
 							pass
-						sp.call('cls',shell=True)
+						sp.call(command,shell=True)
 				else:
 					print("Please Enter Your Choice Correctly !!!")
 					for i in range(99999999):
 						pass
 				print("1)- View Products\n2)- Add New Product\n3)- Edit Product\n4)- Delete Product\n5)- Exit")
 				n1=input()
-				sp.call('cls',shell=True)
+				sp.call(command,shell=True)
 				
 		elif(n=='3'):
-			sp.call('cls',shell=True)
+			sp.call(command,shell=True)
 			print("1)- View Messages\n2)- Delete Message\n3)- Exit")
 			n2=input()
-			sp.call('cls',shell=True)
+			sp.call(command,shell=True)
 			while(n2!='3') :
 				if(n2=='1') :
 					Show_Messages()
 					input("\nPress ENTER !!")
-					sp.call('cls',shell=True)
+					sp.call(command,shell=True)
 				elif(n2=='2'):
 					#Delete Message function
-					sp.call('cls',shell=True)
+					sp.call(command,shell=True)
 					Show_Messages()
 					Id=int(input("Message ID to Delete: "))
 					if(Delete_Message(Id)==True) :
 						print("The Message Has Been Deleted Successfully !")
 						for i in range(99999999):
 							pass
-						sp.call('cls',shell=True)
+						sp.call(command,shell=True)
 					else:
 						print("Message ID Not Found !")
 						for i in range(99999999):
 							pass
-						sp.call('cls',shell=True)
+						sp.call(command,shell=True)
 				else:
 					print("Please Enter Your Choice Correctly !!!")
 					for i in range(99999999):
 						pass
 				print("1)- View Messages\n2)- Delete Message\n3)- Exit")
 				n2=input()
-				sp.call('cls',shell=True)
+				sp.call(command,shell=True)
 
 		elif(n=='4'):
 			db.drop_all()
 			print("DataBase Deleted Successfully !")
 			for i in range(99999999):
 				pass
-			sp.call('cls',shell=True)
+			sp.call(command,shell=True)
 		else:
 			print("Please Enter Your Choice Correctly !!!")
 			for i in range(99999999):
 				pass
-		sp.call('cls',shell=True)
+		sp.call(command,shell=True)
 		print("1)- Create DataBase\n2)- Products\n3)- Messages\n4)- Delete DataBase\n5)- Exit")
 		n=input()
 
