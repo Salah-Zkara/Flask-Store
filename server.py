@@ -42,7 +42,8 @@ def home():
 
 @app.route("/about")
 def about():
-    return  render_template("about.html",titre="About")
+    x=datetime.datetime.now().date()
+    return  render_template("about.html",today=x,titre="About")
 
 
 @app.route("/contact",methods=['GET','POST'])
@@ -59,7 +60,8 @@ def contact():
         db.session.commit()
         valid=True
     messages=Message.query.all()
-    return  render_template("contact.html",valid=valid,messages=messages[::-1])
+    x=datetime.datetime.now().date()
+    return  render_template("contact.html",today=x,valid=valid,messages=messages[::-1])
 
 @app.route("/product/<id>")
 def product(id):
