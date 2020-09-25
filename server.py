@@ -5,8 +5,8 @@ import datetime
 
 app=Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///store.db'
-#app.config['SQLALCHEMY_DATABASE_URI']=''
+#app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///store.db'
+app.config['SQLALCHEMY_DATABASE_URI']='postgres://gowmrvzprkrnpo:b8679c8141b48c5a6d590eaf6f47c41d91c2d2d7bdd4d6da3f205b2d6c89db66@ec2-54-247-118-139.eu-west-1.compute.amazonaws.com:5432/dfhtubiu7hlfpm'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db=SQLAlchemy(app)
 
@@ -69,4 +69,4 @@ def product(id):
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run()
