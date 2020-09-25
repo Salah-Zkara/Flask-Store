@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
+import logging
+
+
 
 
 app=Flask(__name__)
@@ -71,4 +74,6 @@ def product(id):
 
 
 if __name__=="__main__":
+	app.logger.addHandler(logging.StreamHandler(sys.stdout))
+	app.logger.setLevel(logging.ERROR)
     app.run(debug=True)
