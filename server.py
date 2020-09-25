@@ -1,10 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
-import logging
-
-
-
 
 app=Flask(__name__)
 
@@ -15,27 +11,21 @@ db=SQLAlchemy(app)
 
 class Product(db.Model):
     id=db.Column(db.Integer,primary_key=True)
-    image=db.Column(db.String(20),nullable=False)
-    titre=db.Column(db.String(20),nullable=False)
+    image=db.Column(db.String(50),nullable=False)
+    titre=db.Column(db.String(50),nullable=False)
     prix=db.Column(db.Float,nullable=False)
-    specs=db.Column(db.String(60),nullable=False)
+    specs=db.Column(db.String(100),nullable=False)
     description=db.Column(db.Text,nullable=False)
     
-    
-    
-
-
 class Message(db.Model):
     id=db.Column(db.Integer,primary_key=True)
-    nom=db.Column(db.String(20),nullable=False)
-    mail=db.Column(db.String(20),nullable=False)
+    nom=db.Column(db.String(50),nullable=False)
+    mail=db.Column(db.String(50),nullable=False)
     mdate=db.Column(db.DateTime,default=datetime.datetime.utcnow)
     rate=db.Column(db.Integer,nullable=False)
     message=db.Column(db.Text,nullable=False)
 
 messages=[]
-
-
 
 @app.route("/")
 def home():
@@ -47,7 +37,6 @@ def home():
 def about():
     x=datetime.datetime.now().date()
     return  render_template("about.html",today=x,titre="About")
-
 
 @app.route("/contact",methods=['GET','POST'])
 def contact():
@@ -72,8 +61,5 @@ def product(id):
     products=Product.query.all()
     return render_template('product.html',prod=products[id])
 
-
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
 if __name__=="__main__":
-    app.run(debug=True)
+	app.run()
