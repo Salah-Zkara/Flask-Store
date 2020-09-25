@@ -73,7 +73,7 @@ def product(id):
     return render_template('product.html',prod=products[id])
 
 
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 if __name__=="__main__":
-	app.logger.addHandler(logging.StreamHandler(sys.stdout))
-	app.logger.setLevel(logging.ERROR)
     app.run(debug=True)
